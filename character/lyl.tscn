@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://di25apynsjnso"]
+
+[ext_resource type="Texture2D" uid="uid://d0rgfpvu3ue46" path="res://art/lyl.png" id="1_u5xoc"]
+[ext_resource type="Texture2D" uid="uid://bpfs68gfaxyfe" path="res://art/?.svg" id="2_nglmx"]
+[ext_resource type="Script" path="res://character/lyl.gd" id="3_m76au"]
+[ext_resource type="PackedScene" uid="uid://3d8wrvtd4lhk" path="res://dialogue/dialogue.tscn" id="4_5njds"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4lqt"]
+size = Vector2(176, 293)
+
+[node name="Area2D" type="Area2D"]
+position = Vector2(576, 324)
+script = ExtResource("3_m76au")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_u5xoc")
+
+[node name="indicator" type="Sprite2D" parent="."]
+position = Vector2(-46, -187)
+scale = Vector2(0.0975, 0.0975)
+texture = ExtResource("2_nglmx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l4lqt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="dialogue_box" parent="." instance=ExtResource("4_5njds")]
+offset_left = -575.0
+offset_top = -326.0
+offset_right = 577.0
+offset_bottom = 322.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
